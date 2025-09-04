@@ -18,7 +18,18 @@
 			"app": "dist/app.js",
 			"api": "dist/api.js"
 		},
-		"entries": [],
+		"entries": [
+			{
+				"type": "endpoint",
+				"name": "magic-link-api",
+				"source": "src/magic-link-api/index.ts"
+			},
+			{
+				"type": "module",
+				"name": "magic-link-page",
+				"source": "src/magic-link-page/index.ts"
+			}
+		],
 		"host": "^10.10.0"
 	},
 	"scripts": {
@@ -29,6 +40,9 @@
 		"add": "directus-extension add"
 	},
 	"devDependencies": {
-		"@directus/extensions-sdk": "16.0.1"
+		"@directus/extensions-sdk": "16.0.1",
+		"@types/node": "^24.3.0",
+		"typescript": "^5.9.2",
+		"vue": "^3.5.21"
 	}
 }
