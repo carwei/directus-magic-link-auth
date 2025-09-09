@@ -22,7 +22,7 @@ A Directus extension that adds secure, passwordless authentication to your Direc
 This is currently not implemented, but could be added in future versions if needed:
 
 - Make the links true single use (there is currently a 1 minute window after the first use to use it again, to allow for accidental triggering by e-mail clients)
-- Sending email using any 'EMAIL_TRANSPORT' mode (not only SMTP)
+- Sending email using any `EMAIL_TRANSPORT` mode (not only SMTP)
 - Login module that works with the Directus Data Studio app (without a custom frontend)
 - Installation via the Directus Marketplace
 
