@@ -323,16 +323,16 @@ export default defineEndpoint((router, { services, database, env, logger }) => {
 				await sendEmail(
 					user.email,
 					config.emailSubject,
-					`Inloggning
+					`Login Request
 
-Använd länken nedan för att logga in. Länken fungerar i ${config.expirationMinutes} minuter.
+Click the link below to log in. This link will expire in ${config.expirationMinutes} minutes.
 
 ${verificationUrl}
 
-Om du inte har beställt den här länken, behöver du inte göra något.
+If you didn't request this link, you can safely ignore this email.
 
-Hälsningar,
-Ordloopen`
+Best regards,
+Your Team`
 				);
 
 				// Update the token record to indicate successful email delivery
