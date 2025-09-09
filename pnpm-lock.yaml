@@ -4,10 +4,27 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  nanoid:
+    specifier: ^5.1.5
+    version: 5.1.5
+  nodemailer:
+    specifier: ^6.10.1
+    version: 6.10.1
+
 devDependencies:
   '@directus/extensions-sdk':
     specifier: 16.0.1
-    version: 16.0.1(@unhead/vue@1.11.20)(pinia@2.3.1)
+    version: 16.0.1(@types/node@24.3.0)(@unhead/vue@1.11.20)(nodemailer@6.10.1)(pinia@2.3.1)(typescript@5.9.2)
+  '@types/node':
+    specifier: ^24.3.0
+    version: 24.3.0
+  typescript:
+    specifier: ^5.9.2
+    version: 5.9.2
+  vue:
+    specifier: ^3.5.21
+    version: 3.5.21(typescript@5.9.2)
 
 packages:
 
@@ -56,7 +73,7 @@ packages:
       axios: 1.11.0
       lodash-es: 4.17.21
       nanoid: 5.1.5
-      vue: 3.5.18
+      vue: 3.5.18(typescript@5.9.2)
     transitivePeerDependencies:
       - debug
     dev: true
@@ -65,16 +82,16 @@ packages:
     resolution: {integrity: sha512-dMjVGlSV12VDrfKW9TX8im0rhVjVjPyeR9EMTLAXYDVwtSXsoGiKt1AFMmh6pGDziA/5lhFr+CPH8mz2YedF5w==}
     dev: true
 
-  /@directus/extensions-sdk@16.0.1(@unhead/vue@1.11.20)(pinia@2.3.1):
+  /@directus/extensions-sdk@16.0.1(@types/node@24.3.0)(@unhead/vue@1.11.20)(nodemailer@6.10.1)(pinia@2.3.1)(typescript@5.9.2):
     resolution: {integrity: sha512-It9mJvSyV5HWhk8gLV03ePPyrmUIN1G+SwhPw3lz3Ba5Qxc+cJXnLVCgP0epyIYNqdc8ghos/inDFvMDvMxt3A==}
     engines: {node: '>=20.19.0'}
     hasBin: true
     dependencies:
       '@directus/composables': 11.2.2(vue@3.5.18)
       '@directus/constants': 13.0.2
-      '@directus/extensions': 3.0.10(vue@3.5.18)
+      '@directus/extensions': 3.0.10(nodemailer@6.10.1)(vue@3.5.18)
       '@directus/themes': 1.1.4(@unhead/vue@1.11.20)(pinia@2.3.1)(vue@3.5.18)
-      '@directus/types': 13.2.2(vue@3.5.18)
+      '@directus/types': 13.2.2(nodemailer@6.10.1)(vue@3.5.18)
       '@directus/utils': 13.0.9(vue@3.5.18)
       '@rollup/plugin-commonjs': 28.0.6(rollup@4.46.2)
       '@rollup/plugin-json': 6.1.0(rollup@4.46.2)
@@ -88,14 +105,14 @@ packages:
       esbuild: 0.25.9
       execa: 9.6.0
       fs-extra: 11.3.0
-      inquirer: 12.9.0
+      inquirer: 12.9.0(@types/node@24.3.0)
       ora: 8.2.0
       rollup: 4.46.2
       rollup-plugin-esbuild: 6.2.1(esbuild@0.25.9)(rollup@4.46.2)
-      rollup-plugin-styler: 2.0.0(rollup@4.46.2)
+      rollup-plugin-styler: 2.0.0(rollup@4.46.2)(typescript@5.9.2)
       semver: 7.7.2
-      vite: 7.1.3
-      vue: 3.5.18
+      vite: 7.1.3(@types/node@24.3.0)
+      vue: 3.5.18(typescript@5.9.2)
     transitivePeerDependencies:
       - '@types/node'
       - '@unhead/vue'
@@ -132,7 +149,7 @@ packages:
       - yaml
     dev: true
 
-  /@directus/extensions@3.0.10(vue@3.5.18):
+  /@directus/extensions@3.0.10(nodemailer@6.10.1)(vue@3.5.18):
     resolution: {integrity: sha512-PwHeSwBkLVhWZEnn/B6IjfVSxkrJ0ByafiwfHJmwvR+e1b6KvCTnFTy4khbHJ/Za5cVjOK1YiIJo2ZUHaym+nw==}
     peerDependencies:
       knex: 3.1.0
@@ -150,12 +167,12 @@ packages:
         optional: true
     dependencies:
       '@directus/constants': 13.0.2
-      '@directus/types': 13.2.2(vue@3.5.18)
+      '@directus/types': 13.2.2(nodemailer@6.10.1)(vue@3.5.18)
       '@directus/utils': 13.0.9(vue@3.5.18)
       '@types/express': 4.17.21
       fs-extra: 11.3.0
       lodash-es: 4.17.21
-      vue: 3.5.18
+      vue: 3.5.18(typescript@5.9.2)
       zod: 4.0.14
     transitivePeerDependencies:
       - better-sqlite3
@@ -202,15 +219,15 @@ packages:
       vue: 3.5.18
     dependencies:
       '@directus/utils': 13.0.9(vue@3.5.18)
-      '@unhead/vue': 1.11.20(vue@3.5.20)
+      '@unhead/vue': 1.11.20(vue@3.5.21)
       decamelize: 6.0.0
       flat: 6.0.1
       lodash-es: 4.17.21
-      pinia: 2.3.1(vue@3.5.20)
-      vue: 3.5.18
+      pinia: 2.3.1(typescript@5.9.2)(vue@3.5.21)
+      vue: 3.5.18(typescript@5.9.2)
     dev: true
 
-  /@directus/types@13.2.2(vue@3.5.18):
+  /@directus/types@13.2.2(nodemailer@6.10.1)(vue@3.5.18):
     resolution: {integrity: sha512-bMHOaa6TSPJP5eXsM0kL2JgsCGAaANHG21FNsXsOya540TzL7rMqla+Rxqfx4IG5oxKmrvdSzQ3YqPhN0gnvPw==}
     peerDependencies:
       deep-diff: 1.0.2
@@ -255,7 +272,8 @@ packages:
       '@types/geojson': 7946.0.16
       '@types/nodemailer': 6.4.17
       '@types/ws': 8.18.1
-      vue: 3.5.18
+      nodemailer: 6.10.1
+      vue: 3.5.18(typescript@5.9.2)
     transitivePeerDependencies:
       - better-sqlite3
       - mysql
@@ -283,7 +301,7 @@ packages:
       js-yaml: 4.1.0
       lodash-es: 4.17.21
       micromustache: 8.0.3
-      vue: 3.5.18
+      vue: 3.5.18(typescript@5.9.2)
     dev: true
 
   /@esbuild/aix-ppc64@0.25.9:
@@ -530,7 +548,7 @@ packages:
       '@hapi/hoek': 9.3.0
     dev: true
 
-  /@inquirer/checkbox@4.2.2:
+  /@inquirer/checkbox@4.2.2(@types/node@24.3.0):
     resolution: {integrity: sha512-E+KExNurKcUJJdxmjglTl141EwxWyAHplvsYJQgSwXf8qiNWkTxTuCCqmhFEmbIXd4zLaGMfQFJ6WrZ7fSeV3g==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -539,14 +557,15 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@inquirer/core': 10.2.0
+      '@inquirer/core': 10.2.0(@types/node@24.3.0)
       '@inquirer/figures': 1.0.13
-      '@inquirer/type': 3.0.8
+      '@inquirer/type': 3.0.8(@types/node@24.3.0)
+      '@types/node': 24.3.0
       ansi-escapes: 4.3.2
       yoctocolors-cjs: 2.1.3
     dev: true
 
-  /@inquirer/confirm@5.1.16:
+  /@inquirer/confirm@5.1.16(@types/node@24.3.0):
     resolution: {integrity: sha512-j1a5VstaK5KQy8Mu8cHmuQvN1Zc62TbLhjJxwHvKPPKEoowSF6h/0UdOpA9DNdWZ+9Inq73+puRq1df6OJ8Sag==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -555,11 +574,12 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@inquirer/core': 10.2.0
-      '@inquirer/type': 3.0.8
+      '@inquirer/core': 10.2.0(@types/node@24.3.0)
+      '@inquirer/type': 3.0.8(@types/node@24.3.0)
+      '@types/node': 24.3.0
     dev: true
 
-  /@inquirer/core@10.2.0:
+  /@inquirer/core@10.2.0(@types/node@24.3.0):
     resolution: {integrity: sha512-NyDSjPqhSvpZEMZrLCYUquWNl+XC/moEcVFqS55IEYIYsY0a1cUCevSqk7ctOlnm/RaSBU5psFryNlxcmGrjaA==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -569,7 +589,8 @@ packages:
         optional: true
     dependencies:
       '@inquirer/figures': 1.0.13
-      '@inquirer/type': 3.0.8
+      '@inquirer/type': 3.0.8(@types/node@24.3.0)
+      '@types/node': 24.3.0
       ansi-escapes: 4.3.2
       cli-width: 4.1.0
       mute-stream: 2.0.0
@@ -578,7 +599,7 @@ packages:
       yoctocolors-cjs: 2.1.3
     dev: true
 
-  /@inquirer/editor@4.2.18:
+  /@inquirer/editor@4.2.18(@types/node@24.3.0):
     resolution: {integrity: sha512-yeQN3AXjCm7+Hmq5L6Dm2wEDeBRdAZuyZ4I7tWSSanbxDzqM0KqzoDbKM7p4ebllAYdoQuPJS6N71/3L281i6w==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -587,12 +608,13 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@inquirer/core': 10.2.0
-      '@inquirer/external-editor': 1.0.1
-      '@inquirer/type': 3.0.8
+      '@inquirer/core': 10.2.0(@types/node@24.3.0)
+      '@inquirer/external-editor': 1.0.1(@types/node@24.3.0)
+      '@inquirer/type': 3.0.8(@types/node@24.3.0)
+      '@types/node': 24.3.0
     dev: true
 
-  /@inquirer/expand@4.0.18:
+  /@inquirer/expand@4.0.18(@types/node@24.3.0):
     resolution: {integrity: sha512-xUjteYtavH7HwDMzq4Cn2X4Qsh5NozoDHCJTdoXg9HfZ4w3R6mxV1B9tL7DGJX2eq/zqtsFjhm0/RJIMGlh3ag==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -601,12 +623,13 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@inquirer/core': 10.2.0
-      '@inquirer/type': 3.0.8
+      '@inquirer/core': 10.2.0(@types/node@24.3.0)
+      '@inquirer/type': 3.0.8(@types/node@24.3.0)
+      '@types/node': 24.3.0
       yoctocolors-cjs: 2.1.3
     dev: true
 
-  /@inquirer/external-editor@1.0.1:
+  /@inquirer/external-editor@1.0.1(@types/node@24.3.0):
     resolution: {integrity: sha512-Oau4yL24d2B5IL4ma4UpbQigkVhzPDXLoqy1ggK4gnHg/stmkffJE4oOXHXF3uz0UEpywG68KcyXsyYpA1Re/Q==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -615,6 +638,7 @@ packages:
       '@types/node':
         optional: true
     dependencies:
+      '@types/node': 24.3.0
       chardet: 2.1.0
       iconv-lite: 0.6.3
     dev: true
@@ -624,7 +648,7 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /@inquirer/input@4.2.2:
+  /@inquirer/input@4.2.2(@types/node@24.3.0):
     resolution: {integrity: sha512-hqOvBZj/MhQCpHUuD3MVq18SSoDNHy7wEnQ8mtvs71K8OPZVXJinOzcvQna33dNYLYE4LkA9BlhAhK6MJcsVbw==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -633,11 +657,12 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@inquirer/core': 10.2.0
-      '@inquirer/type': 3.0.8
+      '@inquirer/core': 10.2.0(@types/node@24.3.0)
+      '@inquirer/type': 3.0.8(@types/node@24.3.0)
+      '@types/node': 24.3.0
     dev: true
 
-  /@inquirer/number@3.0.18:
+  /@inquirer/number@3.0.18(@types/node@24.3.0):
     resolution: {integrity: sha512-7exgBm52WXZRczsydCVftozFTrrwbG5ySE0GqUd2zLNSBXyIucs2Wnm7ZKLe/aUu6NUg9dg7Q80QIHCdZJiY4A==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -646,11 +671,12 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@inquirer/core': 10.2.0
-      '@inquirer/type': 3.0.8
+      '@inquirer/core': 10.2.0(@types/node@24.3.0)
+      '@inquirer/type': 3.0.8(@types/node@24.3.0)
+      '@types/node': 24.3.0
     dev: true
 
-  /@inquirer/password@4.0.18:
+  /@inquirer/password@4.0.18(@types/node@24.3.0):
     resolution: {integrity: sha512-zXvzAGxPQTNk/SbT3carAD4Iqi6A2JS2qtcqQjsL22uvD+JfQzUrDEtPjLL7PLn8zlSNyPdY02IiQjzoL9TStA==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -659,12 +685,13 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@inquirer/core': 10.2.0
-      '@inquirer/type': 3.0.8
+      '@inquirer/core': 10.2.0(@types/node@24.3.0)
+      '@inquirer/type': 3.0.8(@types/node@24.3.0)
+      '@types/node': 24.3.0
       ansi-escapes: 4.3.2
     dev: true
 
-  /@inquirer/prompts@7.8.4:
+  /@inquirer/prompts@7.8.4(@types/node@24.3.0):
     resolution: {integrity: sha512-MuxVZ1en1g5oGamXV3DWP89GEkdD54alcfhHd7InUW5BifAdKQEK9SLFa/5hlWbvuhMPlobF0WAx7Okq988Jxg==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -673,19 +700,20 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@inquirer/checkbox': 4.2.2
-      '@inquirer/confirm': 5.1.16
-      '@inquirer/editor': 4.2.18
-      '@inquirer/expand': 4.0.18
-      '@inquirer/input': 4.2.2
-      '@inquirer/number': 3.0.18
-      '@inquirer/password': 4.0.18
-      '@inquirer/rawlist': 4.1.6
-      '@inquirer/search': 3.1.1
-      '@inquirer/select': 4.3.2
+      '@inquirer/checkbox': 4.2.2(@types/node@24.3.0)
+      '@inquirer/confirm': 5.1.16(@types/node@24.3.0)
+      '@inquirer/editor': 4.2.18(@types/node@24.3.0)
+      '@inquirer/expand': 4.0.18(@types/node@24.3.0)
+      '@inquirer/input': 4.2.2(@types/node@24.3.0)
+      '@inquirer/number': 3.0.18(@types/node@24.3.0)
+      '@inquirer/password': 4.0.18(@types/node@24.3.0)
+      '@inquirer/rawlist': 4.1.6(@types/node@24.3.0)
+      '@inquirer/search': 3.1.1(@types/node@24.3.0)
+      '@inquirer/select': 4.3.2(@types/node@24.3.0)
+      '@types/node': 24.3.0
     dev: true
 
-  /@inquirer/rawlist@4.1.6:
+  /@inquirer/rawlist@4.1.6(@types/node@24.3.0):
     resolution: {integrity: sha512-KOZqa3QNr3f0pMnufzL7K+nweFFCCBs6LCXZzXDrVGTyssjLeudn5ySktZYv1XiSqobyHRYYK0c6QsOxJEhXKA==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -694,12 +722,13 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@inquirer/core': 10.2.0
-      '@inquirer/type': 3.0.8
+      '@inquirer/core': 10.2.0(@types/node@24.3.0)
+      '@inquirer/type': 3.0.8(@types/node@24.3.0)
+      '@types/node': 24.3.0
       yoctocolors-cjs: 2.1.3
     dev: true
 
-  /@inquirer/search@3.1.1:
+  /@inquirer/search@3.1.1(@types/node@24.3.0):
     resolution: {integrity: sha512-TkMUY+A2p2EYVY3GCTItYGvqT6LiLzHBnqsU1rJbrpXUijFfM6zvUx0R4civofVwFCmJZcKqOVwwWAjplKkhxA==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -708,13 +737,14 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@inquirer/core': 10.2.0
+      '@inquirer/core': 10.2.0(@types/node@24.3.0)
       '@inquirer/figures': 1.0.13
-      '@inquirer/type': 3.0.8
+      '@inquirer/type': 3.0.8(@types/node@24.3.0)
+      '@types/node': 24.3.0
       yoctocolors-cjs: 2.1.3
     dev: true
 
-  /@inquirer/select@4.3.2:
+  /@inquirer/select@4.3.2(@types/node@24.3.0):
     resolution: {integrity: sha512-nwous24r31M+WyDEHV+qckXkepvihxhnyIaod2MG7eCE6G0Zm/HUF6jgN8GXgf4U7AU6SLseKdanY195cwvU6w==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -723,14 +753,15 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@inquirer/core': 10.2.0
+      '@inquirer/core': 10.2.0(@types/node@24.3.0)
       '@inquirer/figures': 1.0.13
-      '@inquirer/type': 3.0.8
+      '@inquirer/type': 3.0.8(@types/node@24.3.0)
+      '@types/node': 24.3.0
       ansi-escapes: 4.3.2
       yoctocolors-cjs: 2.1.3
     dev: true
 
-  /@inquirer/type@3.0.8:
+  /@inquirer/type@3.0.8(@types/node@24.3.0):
     resolution: {integrity: sha512-lg9Whz8onIHRthWaN1Q9EGLa/0LFJjyM8mEUbL1eTi6yMGvBf8gvyDLtxSXztQsxMvhxxNpJYrwa1YHdq+w4Jw==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -738,6 +769,8 @@ packages:
     peerDependenciesMeta:
       '@types/node':
         optional: true
+    dependencies:
+      '@types/node': 24.3.0
     dev: true
 
   /@jridgewell/gen-mapping@0.3.13:
@@ -1179,7 +1212,7 @@ packages:
       packrup: 0.1.2
     dev: true
 
-  /@unhead/vue@1.11.20(vue@3.5.20):
+  /@unhead/vue@1.11.20(vue@3.5.21):
     resolution: {integrity: sha512-sqQaLbwqY9TvLEGeq8Fd7+F2TIuV3nZ5ihVISHjWpAM3y7DwNWRU7NmT9+yYT+2/jw1Vjwdkv5/HvDnvCLrgmg==}
     peerDependencies:
       vue: '>=2.7 || >=3'
@@ -1188,7 +1221,7 @@ packages:
       '@unhead/shared': 1.11.20
       hookable: 5.5.3
       unhead: 1.11.20
-      vue: 3.5.20
+      vue: 3.5.21(typescript@5.9.2)
     dev: true
 
   /@vitejs/plugin-vue@6.0.1(vite@7.1.3)(vue@3.5.18):
@@ -1199,8 +1232,8 @@ packages:
       vue: ^3.2.25
     dependencies:
       '@rolldown/pluginutils': 1.0.0-beta.29
-      vite: 7.1.3
-      vue: 3.5.18
+      vite: 7.1.3(@types/node@24.3.0)
+      vue: 3.5.18(typescript@5.9.2)
     dev: true
 
   /@vue/compiler-core@3.5.18:
@@ -1213,11 +1246,11 @@ packages:
       source-map-js: 1.2.1
     dev: true
 
-  /@vue/compiler-core@3.5.20:
-    resolution: {integrity: sha512-8TWXUyiqFd3GmP4JTX9hbiTFRwYHgVL/vr3cqhr4YQ258+9FADwvj7golk2sWNGHR67QgmCZ8gz80nQcMokhwg==}
+  /@vue/compiler-core@3.5.21:
+    resolution: {integrity: sha512-8i+LZ0vf6ZgII5Z9XmUvrCyEzocvWT+TeR2VBUVlzIH6Tyv57E20mPZ1bCS+tbejgUgmjrEh7q/0F0bibskAmw==}
     dependencies:
       '@babel/parser': 7.28.3
-      '@vue/shared': 3.5.20
+      '@vue/shared': 3.5.21
       entities: 4.5.0
       estree-walker: 2.0.2
       source-map-js: 1.2.1
@@ -1230,11 +1263,11 @@ packages:
       '@vue/shared': 3.5.18
     dev: true
 
-  /@vue/compiler-dom@3.5.20:
-    resolution: {integrity: sha512-whB44M59XKjqUEYOMPYU0ijUV0G+4fdrHVKDe32abNdX/kJe1NUEMqsi4cwzXa9kyM9w5S8WqFsrfo1ogtBZGQ==}
+  /@vue/compiler-dom@3.5.21:
+    resolution: {integrity: sha512-jNtbu/u97wiyEBJlJ9kmdw7tAr5Vy0Aj5CgQmo+6pxWNQhXZDPsRr1UWPN4v3Zf82s2H3kF51IbzZ4jMWAgPlQ==}
     dependencies:
-      '@vue/compiler-core': 3.5.20
-      '@vue/shared': 3.5.20
+      '@vue/compiler-core': 3.5.21
+      '@vue/shared': 3.5.21
     dev: true
 
   /@vue/compiler-sfc@3.5.18:
@@ -1251,14 +1284,14 @@ packages:
       source-map-js: 1.2.1
     dev: true
 
-  /@vue/compiler-sfc@3.5.20:
-    resolution: {integrity: sha512-SFcxapQc0/feWiSBfkGsa1v4DOrnMAQSYuvDMpEaxbpH5dKbnEM5KobSNSgU+1MbHCl+9ftm7oQWxvwDB6iBfw==}
+  /@vue/compiler-sfc@3.5.21:
+    resolution: {integrity: sha512-SXlyk6I5eUGBd2v8Ie7tF6ADHE9kCR6mBEuPyH1nUZ0h6Xx6nZI29i12sJKQmzbDyr2tUHMhhTt51Z6blbkTTQ==}
     dependencies:
       '@babel/parser': 7.28.3
-      '@vue/compiler-core': 3.5.20
-      '@vue/compiler-dom': 3.5.20
-      '@vue/compiler-ssr': 3.5.20
-      '@vue/shared': 3.5.20
+      '@vue/compiler-core': 3.5.21
+      '@vue/compiler-dom': 3.5.21
+      '@vue/compiler-ssr': 3.5.21
+      '@vue/shared': 3.5.21
       estree-walker: 2.0.2
       magic-string: 0.30.18
       postcss: 8.5.6
@@ -1272,11 +1305,11 @@ packages:
       '@vue/shared': 3.5.18
     dev: true
 
-  /@vue/compiler-ssr@3.5.20:
-    resolution: {integrity: sha512-RSl5XAMc5YFUXpDQi+UQDdVjH9FnEpLDHIALg5J0ITHxkEzJ8uQLlo7CIbjPYqmZtt6w0TsIPbo1izYXwDG7JA==}
+  /@vue/compiler-ssr@3.5.21:
+    resolution: {integrity: sha512-vKQ5olH5edFZdf5ZrlEgSO1j1DMA4u23TVK5XR1uMhvwnYvVdDF0nHXJUblL/GvzlShQbjhZZ2uvYmDlAbgo9w==}
     dependencies:
-      '@vue/compiler-dom': 3.5.20
-      '@vue/shared': 3.5.20
+      '@vue/compiler-dom': 3.5.21
+      '@vue/shared': 3.5.21
     dev: true
 
   /@vue/devtools-api@6.6.4:
@@ -1289,10 +1322,10 @@ packages:
       '@vue/shared': 3.5.18
     dev: true
 
-  /@vue/reactivity@3.5.20:
-    resolution: {integrity: sha512-hS8l8x4cl1fmZpSQX/NXlqWKARqEsNmfkwOIYqtR2F616NGfsLUm0G6FQBK6uDKUCVyi1YOL8Xmt/RkZcd/jYQ==}
+  /@vue/reactivity@3.5.21:
+    resolution: {integrity: sha512-3ah7sa+Cwr9iiYEERt9JfZKPw4A2UlbY8RbbnH2mGCE8NwHkhmlZt2VsH0oDA3P08X3jJd29ohBDtX+TbD9AsA==}
     dependencies:
-      '@vue/shared': 3.5.20
+      '@vue/shared': 3.5.21
     dev: true
 
   /@vue/runtime-core@3.5.18:
@@ -1302,11 +1335,11 @@ packages:
       '@vue/shared': 3.5.18
     dev: true
 
-  /@vue/runtime-core@3.5.20:
-    resolution: {integrity: sha512-vyQRiH5uSZlOa+4I/t4Qw/SsD/gbth0SW2J7oMeVlMFMAmsG1rwDD6ok0VMmjXY3eI0iHNSSOBilEDW98PLRKw==}
+  /@vue/runtime-core@3.5.21:
+    resolution: {integrity: sha512-+DplQlRS4MXfIf9gfD1BOJpk5RSyGgGXD/R+cumhe8jdjUcq/qlxDawQlSI8hCKupBlvM+3eS1se5xW+SuNAwA==}
     dependencies:
-      '@vue/reactivity': 3.5.20
-      '@vue/shared': 3.5.20
+      '@vue/reactivity': 3.5.21
+      '@vue/shared': 3.5.21
     dev: true
 
   /@vue/runtime-dom@3.5.18:
@@ -1318,12 +1351,12 @@ packages:
       csstype: 3.1.3
     dev: true
 
-  /@vue/runtime-dom@3.5.20:
-    resolution: {integrity: sha512-KBHzPld/Djw3im0CQ7tGCpgRedryIn4CcAl047EhFTCCPT2xFf4e8j6WeKLgEEoqPSl9TYqShc3Q6tpWpz/Xgw==}
+  /@vue/runtime-dom@3.5.21:
+    resolution: {integrity: sha512-3M2DZsOFwM5qI15wrMmNF5RJe1+ARijt2HM3TbzBbPSuBHOQpoidE+Pa+XEaVN+czbHf81ETRoG1ltztP2em8w==}
     dependencies:
-      '@vue/reactivity': 3.5.20
-      '@vue/runtime-core': 3.5.20
-      '@vue/shared': 3.5.20
+      '@vue/reactivity': 3.5.21
+      '@vue/runtime-core': 3.5.21
+      '@vue/shared': 3.5.21
       csstype: 3.1.3
     dev: true
 
@@ -1334,25 +1367,25 @@ packages:
     dependencies:
       '@vue/compiler-ssr': 3.5.18
       '@vue/shared': 3.5.18
-      vue: 3.5.18
+      vue: 3.5.18(typescript@5.9.2)
     dev: true
 
-  /@vue/server-renderer@3.5.20(vue@3.5.20):
-    resolution: {integrity: sha512-HthAS0lZJDH21HFJBVNTtx+ULcIbJQRpjSVomVjfyPkFSpCwvsPTA+jIzOaUm3Hrqx36ozBHePztQFg6pj5aKg==}
+  /@vue/server-renderer@3.5.21(vue@3.5.21):
+    resolution: {integrity: sha512-qr8AqgD3DJPJcGvLcJKQo2tAc8OnXRcfxhOJCPF+fcfn5bBGz7VCcO7t+qETOPxpWK1mgysXvVT/j+xWaHeMWA==}
     peerDependencies:
-      vue: 3.5.20
+      vue: 3.5.21
     dependencies:
-      '@vue/compiler-ssr': 3.5.20
-      '@vue/shared': 3.5.20
-      vue: 3.5.20
+      '@vue/compiler-ssr': 3.5.21
+      '@vue/shared': 3.5.21
+      vue: 3.5.21(typescript@5.9.2)
     dev: true
 
   /@vue/shared@3.5.18:
     resolution: {integrity: sha512-cZy8Dq+uuIXbxCZpuLd2GJdeSO/lIzIspC2WtkqIpje5QyFbvLaI5wZtdUjLHjGZrlVX6GilejatWwVYYRc8tA==}
     dev: true
 
-  /@vue/shared@3.5.20:
-    resolution: {integrity: sha512-SoRGP596KU/ig6TfgkCMbXkr4YJ91n/QSdMuqeP5r3hVIYA3CPHUBCc7Skak0EAKV+5lL4KyIh61VA/pK1CIAA==}
+  /@vue/shared@3.5.21:
+    resolution: {integrity: sha512-+2k1EQpnYuVuu3N7atWyG3/xoFWIVJZq4Mz8XNOdScFI0etES75fbny/oU4lKWk/577P1zmg0ioYvpGEDZ3DLw==}
     dev: true
 
   /acorn@8.15.0:
@@ -1523,7 +1556,7 @@ packages:
     resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}
     dev: true
 
-  /cosmiconfig@8.3.6:
+  /cosmiconfig@8.3.6(typescript@5.9.2):
     resolution: {integrity: sha512-kcZ6+W5QzcJ3P1Mt+83OUv/oHFqZHIx8DuxG6eZ5RGMERoLqp4BuGjhHLYGK+Kf5XVkQvqBSmAy/nGWN3qDgEA==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -1536,6 +1569,7 @@ packages:
       js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
+      typescript: 5.9.2
     dev: true
 
   /cross-spawn@7.0.6:
@@ -2056,7 +2090,7 @@ packages:
       resolve-from: 4.0.0
     dev: true
 
-  /inquirer@12.9.0:
+  /inquirer@12.9.0(@types/node@24.3.0):
     resolution: {integrity: sha512-LlFVmvWVCun7uEgPB3vups9NzBrjJn48kRNtFGw3xU1H5UXExTEz/oF1JGLaB0fvlkUB+W6JfgLcSEaSdH7RPA==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -2065,9 +2099,10 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@inquirer/core': 10.2.0
-      '@inquirer/prompts': 7.8.4
-      '@inquirer/type': 3.0.8
+      '@inquirer/core': 10.2.0(@types/node@24.3.0)
+      '@inquirer/prompts': 7.8.4(@types/node@24.3.0)
+      '@inquirer/type': 3.0.8(@types/node@24.3.0)
+      '@types/node': 24.3.0
       ansi-escapes: 4.3.2
       mute-stream: 2.0.0
       run-async: 4.0.6
@@ -2310,11 +2345,14 @@ packages:
     resolution: {integrity: sha512-Ir/+ZpE9fDsNH0hQ3C68uyThDXzYcim2EqcZ8zn8Chtt1iylPT9xXJB0kPCnqzgcEGikO9RxSrh63MsmVCU7Fw==}
     engines: {node: ^18 || >=20}
     hasBin: true
-    dev: true
 
   /node-releases@2.0.19:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
     dev: true
+
+  /nodemailer@6.10.1:
+    resolution: {integrity: sha512-Z+iLaBGVaSjbIzQ4pX6XV41HrooLsQ10ZWPUehGmuantvzWoDVBnmsdUcOIDM1t+yPor5pDhVlDESgOMEGxhHA==}
+    engines: {node: '>=6.0.0'}
 
   /npm-run-path@6.0.0:
     resolution: {integrity: sha512-9qny7Z9DsQU8Ou39ERsPU4OZQlSTP47ShQzuKZ6PRXpYLtIFgl/DEBYEXKlvcEa+9tHVcK8CF81Y2V72qaZhWA==}
@@ -2427,7 +2465,7 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /pinia@2.3.1(vue@3.5.20):
+  /pinia@2.3.1(typescript@5.9.2)(vue@3.5.21):
     resolution: {integrity: sha512-khUlZSwt9xXCaTbbxFYBKDc/bWAGWJjOgvxETwkTN7KRm66EeT1ZdZj6i2ceh9sP2Pzqsbc704r2yngBrxBVug==}
     peerDependencies:
       typescript: '>=4.4.4'
@@ -2437,8 +2475,9 @@ packages:
         optional: true
     dependencies:
       '@vue/devtools-api': 6.6.4
-      vue: 3.5.20
-      vue-demi: 0.14.10(vue@3.5.20)
+      typescript: 5.9.2
+      vue: 3.5.21(typescript@5.9.2)
+      vue-demi: 0.14.10(vue@3.5.21)
     transitivePeerDependencies:
       - '@vue/composition-api'
     dev: true
@@ -2876,14 +2915,14 @@ packages:
       - supports-color
     dev: true
 
-  /rollup-plugin-styler@2.0.0(rollup@4.46.2):
+  /rollup-plugin-styler@2.0.0(rollup@4.46.2)(typescript@5.9.2):
     resolution: {integrity: sha512-u96KK3hfA5RDeZFuE1kW0mu7FKS6sDu0RlGx9vijqQbzlmrzkhkBtge5gXZ6wF0CnTgcn7CfkwKOwIcWVZU/VQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     peerDependencies:
       rollup: ^2.63.0 || ^3.0.0 || ^4.0.0
     dependencies:
       '@rollup/pluginutils': 5.2.0(rollup@4.46.2)
-      cosmiconfig: 8.3.6
+      cosmiconfig: 8.3.6(typescript@5.9.2)
       cssnano: 7.1.1(postcss@8.5.6)
       fs-extra: 11.3.0
       icss-utils: 5.1.0(postcss@8.5.6)
@@ -3123,6 +3162,12 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /typescript@5.9.2:
+    resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    dev: true
+
   /undici-types@7.10.0:
     resolution: {integrity: sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag==}
     dev: true
@@ -3169,7 +3214,7 @@ packages:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
 
-  /vite@7.1.3:
+  /vite@7.1.3(@types/node@24.3.0):
     resolution: {integrity: sha512-OOUi5zjkDxYrKhTV3V7iKsoS37VUM7v40+HuwEmcrsf11Cdx9y3DIr2Px6liIcZFwt3XSRpQvFpL3WVy7ApkGw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
@@ -3209,6 +3254,7 @@ packages:
       yaml:
         optional: true
     dependencies:
+      '@types/node': 24.3.0
       esbuild: 0.25.9
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
@@ -3219,7 +3265,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vue-demi@0.14.10(vue@3.5.20):
+  /vue-demi@0.14.10(vue@3.5.21):
     resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
     engines: {node: '>=12'}
     hasBin: true
@@ -3231,10 +3277,10 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
-      vue: 3.5.20
+      vue: 3.5.21(typescript@5.9.2)
     dev: true
 
-  /vue@3.5.18:
+  /vue@3.5.18(typescript@5.9.2):
     resolution: {integrity: sha512-7W4Y4ZbMiQ3SEo+m9lnoNpV9xG7QVMLa+/0RFwwiAVkeYoyGXqWE85jabU4pllJNUzqfLShJ5YLptewhCWUgNA==}
     peerDependencies:
       typescript: '*'
@@ -3247,21 +3293,23 @@ packages:
       '@vue/runtime-dom': 3.5.18
       '@vue/server-renderer': 3.5.18(vue@3.5.18)
       '@vue/shared': 3.5.18
+      typescript: 5.9.2
     dev: true
 
-  /vue@3.5.20:
-    resolution: {integrity: sha512-2sBz0x/wis5TkF1XZ2vH25zWq3G1bFEPOfkBcx2ikowmphoQsPH6X0V3mmPCXA2K1N/XGTnifVyDQP4GfDDeQw==}
+  /vue@3.5.21(typescript@5.9.2):
+    resolution: {integrity: sha512-xxf9rum9KtOdwdRkiApWL+9hZEMWE90FHh8yS1+KJAiWYh+iGWV1FquPjoO9VUHQ+VIhsCXNNyZ5Sf4++RVZBA==}
     peerDependencies:
       typescript: '*'
     peerDependenciesMeta:
       typescript:
         optional: true
     dependencies:
-      '@vue/compiler-dom': 3.5.20
-      '@vue/compiler-sfc': 3.5.20
-      '@vue/runtime-dom': 3.5.20
-      '@vue/server-renderer': 3.5.20(vue@3.5.20)
-      '@vue/shared': 3.5.20
+      '@vue/compiler-dom': 3.5.21
+      '@vue/compiler-sfc': 3.5.21
+      '@vue/runtime-dom': 3.5.21
+      '@vue/server-renderer': 3.5.21(vue@3.5.21)
+      '@vue/shared': 3.5.21
+      typescript: 5.9.2
     dev: true
 
   /which@2.0.2:

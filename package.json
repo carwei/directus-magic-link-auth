@@ -1,8 +1,9 @@
 {
 	"name": "directus-magic-link-auth",
-	"description": "Please enter a description for your extension",
-	"icon": "extension",
-	"version": "1.0.0",
+	"description": "Secure passwordless authentication for Directus using magic links sent via email",
+	"version": "0.5.0",
+	"license": "MIT",
+	"icon": "mail_lock",
 	"keywords": [
 		"directus",
 		"directus-extension",
@@ -38,6 +39,10 @@
 		"link": "directus-extension link",
 		"validate": "directus-extension validate",
 		"add": "directus-extension add"
+	},
+	"dependencies": {
+    	"nodemailer": "^6.10.1",
+		"nanoid": "^5.1.5"
 	},
 	"devDependencies": {
 		"@directus/extensions-sdk": "16.0.1",
