@@ -97,7 +97,7 @@ This is currently not implemented, but could be added in future versions if need
 
 ### Generating a Magic Link
 
-Send a POST request to `/magic-link/generate` with the following body:
+Send a POST request to `/magic-link-api/generate` with the following body:
 
 ```json
 {

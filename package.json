@@ -1,7 +1,7 @@
 {
 	"name": "directus-magic-link-auth",
 	"description": "Secure passwordless authentication for Directus using magic links sent via email",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"license": "MIT",
 	"icon": "mail_lock",
 	"keywords": [
