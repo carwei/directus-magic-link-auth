@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:directus.io)",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

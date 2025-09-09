@@ -1,7 +1,7 @@
 {
 	"name": "directus-magic-link-auth",
 	"description": "Secure passwordless authentication for Directus using magic links sent via email",
-	"version": "0.5.1",
+	"version": "0.5.4",
 	"license": "MIT",
 	"icon": "mail_lock",
 	"keywords": [
@@ -29,6 +29,11 @@
 				"type": "module",
 				"name": "magic-link-page",
 				"source": "src/magic-link-page/index.ts"
+			},
+			{
+				"type": "endpoint",
+				"name": "magic-link-ui",
+				"source": "src/magic-link-ui/index.ts"
 			}
 		],
 		"host": "^10.10.0"
@@ -41,12 +46,12 @@
 		"add": "directus-extension add"
 	},
 	"dependencies": {
-    	"nodemailer": "^6.10.1",
+		"nodemailer": "^6.10.1",
 		"nanoid": "^5.1.5"
 	},
 	"devDependencies": {
 		"@directus/extensions-sdk": "16.0.1",
-		"@types/node": "^24.3.0",
+		"@types/node": "^24.3.1",
 		"typescript": "^5.9.2",
 		"vue": "^3.5.21"
 	}
