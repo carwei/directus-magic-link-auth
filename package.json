@@ -1,7 +1,7 @@
 {
 	"name": "directus-magic-link-auth",
 	"description": "Secure passwordless authentication for Directus using magic links sent via email",
-	"version": "0.5.5",
+	"version": "0.9.0",
 	"license": "MIT",
 	"icon": "mail_lock",
 	"keywords": [
@@ -24,11 +24,6 @@
 				"type": "endpoint",
 				"name": "magic-link-api",
 				"source": "src/magic-link-api/index.ts"
-			},
-			{
-				"type": "module",
-				"name": "magic-link-page",
-				"source": "src/magic-link-page/index.ts"
 			},
 			{
 				"type": "endpoint",

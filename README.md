@@ -92,6 +92,11 @@ This is currently not implemented, but could be added in future versions if need
    EMAIL_SMTP_USER=your-smtp-username
    EMAIL_SMTP_PASSWORD=your-smtp-password
    EMAIL_FROM="Your Name <email@example.com>"
+   
+   # URL Configuration
+   PUBLIC_URL=https://your-directus-url.com
+   # Optional: Internal URL for server-to-server calls (when behind proxy/NGINX)
+   DIRECTUS_INTERNAL_URL=http://directus:8055
    ```
 
 ## Data Studio Integration Limitations
@@ -250,6 +255,7 @@ if (token) {
 | `MAGIC_LINK_ALLOWED_ROLES`         | Comma-separated list of role IDs allowed to use magic links     | (empty = all roles)       |
 | `MAGIC_LINK_DISALLOWED_ROLES`      | Comma-separated list of role IDs not allowed to use magic links | (empty = no restrictions) |
 | `PUBLIC_URL`                       | Your Directus instance URL                                      | `http://localhost:8055`   |
+| `DIRECTUS_INTERNAL_URL`            | Internal URL for server-to-server calls (bypasses proxy)        | `PUBLIC_URL`              |
 | `MAGIC_LINK_SITE_NAME`             | Site name displayed in the demo interface                       | `"Magic Link Demo"`       |
 
 ## Role-Based Access Control
