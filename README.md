@@ -24,8 +24,8 @@ This is currently not implemented, but could be added in future versions if need
 - Make the full e-mail customizable (not just the subject)
 - Make the links true single use (there is currently a 1 minute window after the first use to use it again, to allow for accidental triggering by e-mail clients)
 - Sending email using any `EMAIL_TRANSPORT` mode (not only SMTP)
-- Login module that works with the Directus Data Studio app (see **Data Studio Integration Limitations** below)
 - Installation via the Directus Marketplace
+- Very complex: Login module that works with the Directus Data Studio app (see **Data Studio Integration Limitations** below)
 
 ## Installation
 
