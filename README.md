@@ -3,9 +3,9 @@
 A Directus extension that adds secure, passwordless authentication to your Directus instance through magic links sent via email.
 
 ## Note: Quick-start
-I recommend that you first use the built-in demo '/magic-link-ui' before you integrate this into your custom Directus front-end. that way you know that all the requirements/settings are correct (which could save you from a lot of time). 
+I recommend that you first use the built-in demo at `/magic-link-ui` before you integrate this into your custom Directus front-end. that way you know that all the requirements/settings are correct (which could save you from a lot of time). 
 
-After full integration, you can selective disable the 'magic-link-ui' endpoint and obly leave 'magic-link-api' active.
+After full integration, you can selective disable the `magic-link-ui` endpoint and obly leave `magic-link-api` active.
 
 ## Features
 
