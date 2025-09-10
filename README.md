@@ -24,7 +24,7 @@ This is currently not implemented, but could be added in future versions if need
 - Make the full e-mail customizable (not just the subject)
 - Make the links true single use (there is currently a 1 minute window after the first use to use it again, to allow for accidental triggering by e-mail clients)
 - Sending email using any `EMAIL_TRANSPORT` mode (not only SMTP)
-- Login module that works with the Directus Data Studio app (without a custom frontend)
+- Login module that works with the Directus Data Studio app (see **Data Studio Integration Limitations** below)
 - Installation via the Directus Marketplace
 
 ## Installation
@@ -94,6 +94,28 @@ This is currently not implemented, but could be added in future versions if need
    EMAIL_FROM="Your Name <email@example.com>"
    ```
 
+## Data Studio Integration Limitations
+
+**Important**: This extension cannot be directly integrated with the Directus Data Studio interface due to technical limitations:
+
+1. **Content Security Policy (CSP)**: Directus has strict CSP policies that prevent execution of inline JavaScript and external scripts within the Data Studio interface.
+2. **Session Context**: The Data Studio operates in a different session context than the public API endpoints, making direct authentication integration complex.
+
+Instead, this extension provides:
+- A working **demo interface** at `/magic-link-ui` that shows the complete flow
+- Clean **API endpoints** (`/magic-link-api`) that can be integrated with any custom frontend
+- **Example code** in the demo that developers can adapt for their own implementations
+
+## Demo Interface
+
+The extension includes a complete demo at `/magic-link-ui` that demonstrates the magic link flow without requiring JavaScript (to avoid CSP issues). This demo serves as:
+
+- A working example of the complete authentication flow
+- Reference implementation for developers building custom frontends
+- Testing interface for the magic link functionality
+
+Access the demo at: `https://your-directus-url.com/magic-link-ui`
+
 ## Usage
 
 ### Generating a Magic Link
@@ -133,7 +155,9 @@ This will:
 
 ### Frontend Integration
 
-In your frontend application, you can add a simple form to request a magic link:
+The demo interface at `/magic-link-ui` provides complete example code that you can adapt for your own frontend. Here's a basic implementation:
+
+#### Requesting a Magic Link
 
 ```html
 <form id="magic-link-form">
@@ -150,7 +174,7 @@ In your frontend application, you can add a simple form to request a magic link:
 
       try {
         const response = await fetch(
-          "https://your-directus-url.com/magic-link/generate",
+          "https://your-directus-url.com/magic-link-api/generate",
           {
             method: "POST",
             headers: {
@@ -175,6 +199,40 @@ In your frontend application, you can add a simple form to request a magic link:
 </script>
 ```
 
+#### Handling Magic Link Verification
+
+When users click the magic link, they'll be redirected to your verification page with a `token` parameter. Here's how to handle it:
+
+```javascript
+// Extract token from URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const token = urlParams.get('token');
+
+if (token) {
+  // Verify the token with Directus
+  fetch(`https://your-directus-url.com/magic-link-api/verify?token=${token}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Token is valid, user is authenticated
+        // The response includes session data you can use
+        console.log('User authenticated:', data.data);
+        
+        // Redirect to your application
+        window.location.href = '/dashboard';
+      } else {
+        // Handle invalid/expired token
+        alert('Invalid or expired magic link');
+      }
+    })
+    .catch(error => {
+      console.error('Verification error:', error);
+    });
+}
+```
+
+**Note**: See the demo interface source code in `/src/magic-link-ui/index.ts` for a complete reference implementation without JavaScript (useful for understanding the server-side flow).
+
 ## Configuration Options
 
 | Environment Variable               | Description                                                     | Default                   |
@@ -192,6 +250,7 @@ In your frontend application, you can add a simple form to request a magic link:
 | `MAGIC_LINK_ALLOWED_ROLES`         | Comma-separated list of role IDs allowed to use magic links     | (empty = all roles)       |
 | `MAGIC_LINK_DISALLOWED_ROLES`      | Comma-separated list of role IDs not allowed to use magic links | (empty = no restrictions) |
 | `PUBLIC_URL`                       | Your Directus instance URL                                      | `http://localhost:8055`   |
+| `MAGIC_LINK_SITE_NAME`             | Site name displayed in the demo interface                       | `"Magic Link Demo"`       |
 
 ## Role-Based Access Control
 
