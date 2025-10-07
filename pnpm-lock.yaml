@@ -9,13 +9,13 @@ dependencies:
     specifier: ^5.1.5
     version: 5.1.5
   nodemailer:
-    specifier: ^6.10.1
-    version: 6.10.1
+    specifier: ^7.0.7
+    version: 7.0.7
 
 devDependencies:
   '@directus/extensions-sdk':
     specifier: 16.0.1
-    version: 16.0.1(@types/node@24.3.1)(@unhead/vue@1.11.20)(nodemailer@6.10.1)(pinia@2.3.1)(typescript@5.9.2)
+    version: 16.0.1(@types/node@24.3.1)(@unhead/vue@1.11.20)(nodemailer@7.0.7)(pinia@2.3.1)(typescript@5.9.2)
   '@types/node':
     specifier: ^24.3.1
     version: 24.3.1
@@ -82,16 +82,16 @@ packages:
     resolution: {integrity: sha512-dMjVGlSV12VDrfKW9TX8im0rhVjVjPyeR9EMTLAXYDVwtSXsoGiKt1AFMmh6pGDziA/5lhFr+CPH8mz2YedF5w==}
     dev: true
 
-  /@directus/extensions-sdk@16.0.1(@types/node@24.3.1)(@unhead/vue@1.11.20)(nodemailer@6.10.1)(pinia@2.3.1)(typescript@5.9.2):
+  /@directus/extensions-sdk@16.0.1(@types/node@24.3.1)(@unhead/vue@1.11.20)(nodemailer@7.0.7)(pinia@2.3.1)(typescript@5.9.2):
     resolution: {integrity: sha512-It9mJvSyV5HWhk8gLV03ePPyrmUIN1G+SwhPw3lz3Ba5Qxc+cJXnLVCgP0epyIYNqdc8ghos/inDFvMDvMxt3A==}
     engines: {node: '>=20.19.0'}
     hasBin: true
     dependencies:
       '@directus/composables': 11.2.2(vue@3.5.18)
       '@directus/constants': 13.0.2
-      '@directus/extensions': 3.0.10(nodemailer@6.10.1)(vue@3.5.18)
+      '@directus/extensions': 3.0.10(nodemailer@7.0.7)(vue@3.5.18)
       '@directus/themes': 1.1.4(@unhead/vue@1.11.20)(pinia@2.3.1)(vue@3.5.18)
-      '@directus/types': 13.2.2(nodemailer@6.10.1)(vue@3.5.18)
+      '@directus/types': 13.2.2(nodemailer@7.0.7)(vue@3.5.18)
       '@directus/utils': 13.0.9(vue@3.5.18)
       '@rollup/plugin-commonjs': 28.0.6(rollup@4.46.2)
       '@rollup/plugin-json': 6.1.0(rollup@4.46.2)
@@ -149,7 +149,7 @@ packages:
       - yaml
     dev: true
 
-  /@directus/extensions@3.0.10(nodemailer@6.10.1)(vue@3.5.18):
+  /@directus/extensions@3.0.10(nodemailer@7.0.7)(vue@3.5.18):
     resolution: {integrity: sha512-PwHeSwBkLVhWZEnn/B6IjfVSxkrJ0ByafiwfHJmwvR+e1b6KvCTnFTy4khbHJ/Za5cVjOK1YiIJo2ZUHaym+nw==}
     peerDependencies:
       knex: 3.1.0
@@ -167,7 +167,7 @@ packages:
         optional: true
     dependencies:
       '@directus/constants': 13.0.2
-      '@directus/types': 13.2.2(nodemailer@6.10.1)(vue@3.5.18)
+      '@directus/types': 13.2.2(nodemailer@7.0.7)(vue@3.5.18)
       '@directus/utils': 13.0.9(vue@3.5.18)
       '@types/express': 4.17.21
       fs-extra: 11.3.0
@@ -227,7 +227,7 @@ packages:
       vue: 3.5.18(typescript@5.9.2)
     dev: true
 
-  /@directus/types@13.2.2(nodemailer@6.10.1)(vue@3.5.18):
+  /@directus/types@13.2.2(nodemailer@7.0.7)(vue@3.5.18):
     resolution: {integrity: sha512-bMHOaa6TSPJP5eXsM0kL2JgsCGAaANHG21FNsXsOya540TzL7rMqla+Rxqfx4IG5oxKmrvdSzQ3YqPhN0gnvPw==}
     peerDependencies:
       deep-diff: 1.0.2
@@ -272,7 +272,7 @@ packages:
       '@types/geojson': 7946.0.16
       '@types/nodemailer': 6.4.17
       '@types/ws': 8.18.1
-      nodemailer: 6.10.1
+      nodemailer: 7.0.7
       vue: 3.5.18(typescript@5.9.2)
     transitivePeerDependencies:
       - better-sqlite3
@@ -2350,8 +2350,8 @@ packages:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
     dev: true
 
-  /nodemailer@6.10.1:
-    resolution: {integrity: sha512-Z+iLaBGVaSjbIzQ4pX6XV41HrooLsQ10ZWPUehGmuantvzWoDVBnmsdUcOIDM1t+yPor5pDhVlDESgOMEGxhHA==}
+  /nodemailer@7.0.7:
+    resolution: {integrity: sha512-jGOaRznodf62TVzdyhKt/f1Q/c3kYynk8629sgJHpRzGZj01ezbgMMWJSAjHADcwTKxco3B68/R+KHJY2T5BaA==}
     engines: {node: '>=6.0.0'}
 
   /npm-run-path@6.0.0:

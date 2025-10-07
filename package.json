@@ -41,7 +41,7 @@
 		"add": "directus-extension add"
 	},
 	"dependencies": {
-		"nodemailer": "^6.10.1",
+		"nodemailer": "^7.0.7",
 		"nanoid": "^5.1.5"
 	},
 	"devDependencies": {
