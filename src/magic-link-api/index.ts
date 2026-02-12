@@ -35,7 +35,7 @@ export default defineEndpoint((router, { services, database, env, logger }) => {
 
 	// Configuration options with defaults
 	const config = {
-		fromEmail: env.EMAIL_SMTP_USER || '"Magic Link" <noreply@example.com>',
+		fromEmail: env.EMAIL_FROM || env.EMAIL_SMTP_USER || '"Magic Link" <noreply@example.com>',
 		expirationMinutes: parseInt(env.MAGIC_LINK_EXPIRATION_MINUTES || '15'),
 		publicUrl: env.PUBLIC_URL || 'http://localhost:8055',
 		emailSubject: env.MAGIC_LINK_SUBJECT || 'Your Magic Login Link',
