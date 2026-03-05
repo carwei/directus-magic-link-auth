@@ -42,7 +42,8 @@
 	},
 	"dependencies": {
 		"nodemailer": "^6.10.1",
-		"nanoid": "^5.1.5"
+		"nanoid": "^5.1.5",
+		"liquidjs": "^10.21.0"
 	},
 	"devDependencies": {
 		"@directus/extensions-sdk": "16.0.1",

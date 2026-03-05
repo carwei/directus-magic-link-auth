@@ -2,6 +2,42 @@
 import { defineEndpoint } from '@directus/extensions-sdk';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
+import path from 'path';
+import fs from 'fs';
+import { Liquid } from 'liquidjs';
+import subjectTranslations from '../subject-translations.json';
+
+// Keys that must not be overwritten by client-supplied templateData
+const RESERVED_CONTEXT_KEYS = ['verificationUrl', 'expirationMinutes', 'email', 'siteName'];
+
+// Recursively sanitize a value, keeping only JSON-safe primitives, plain objects, and arrays.
+function sanitizeValue(val: unknown): unknown {
+	if (val === null || val === undefined) return val;
+	const t = typeof val;
+	if (t === 'string' || t === 'number' || t === 'boolean') return val;
+	if (Array.isArray(val)) return val.map(sanitizeValue);
+	if (t === 'object' && Object.getPrototypeOf(val) === Object.prototype) {
+		const out: Record<string, unknown> = {};
+		for (const [k, v] of Object.entries(val as Record<string, unknown>)) {
+			out[k] = sanitizeValue(v);
+		}
+		return out;
+	}
+	return undefined; // strip functions, symbols, class instances, etc.
+}
+
+function sanitizeTemplateData(data: unknown): Record<string, unknown> {
+	if (!data || typeof data !== 'object' || Array.isArray(data)) return {};
+	if (Object.getPrototypeOf(data) !== Object.prototype) return {};
+	const result: Record<string, unknown> = {};
+	for (const [key, value] of Object.entries(data as Record<string, unknown>)) {
+		const sanitized = sanitizeValue(value);
+		if (sanitized !== undefined) {
+			result[key] = sanitized;
+		}
+	}
+	return result;
+}
 
 export default defineEndpoint((router, { services, database, env, logger }) => {
 	const { AuthenticationService } = services;
@@ -39,11 +75,43 @@ export default defineEndpoint((router, { services, database, env, logger }) => {
 		expirationMinutes: parseInt(env.MAGIC_LINK_EXPIRATION_MINUTES || '15'),
 		publicUrl: env.PUBLIC_URL || 'http://localhost:8055',
 		emailSubject: env.MAGIC_LINK_SUBJECT || 'Your Magic Login Link',
-		verifyEndpoint: env.MAGIC_LINK_VERIFY_ENDPOINT || '/magic-link/verify'
+		verifyEndpoint: env.MAGIC_LINK_VERIFY_ENDPOINT || '/magic-link/verify',
+		siteName: env.MAGIC_LINK_SITE_NAME || 'My Site',
+		emailTemplatesPath: env.EMAIL_TEMPLATES_PATH || './templates'
 	};
 
+	// Liquid template engine
+	const templatesRoot = path.resolve(process.cwd(), config.emailTemplatesPath);
+	const liquidEngine = new Liquid({ root: templatesRoot, extname: '.liquid', cache: true });
+
+	// Resolve the Liquid template name for the given user language.
+	// Returns the template name (without extension) or null if no template file exists.
+	async function resolveTemplateName(language: string | null | undefined): Promise<string | null> {
+		const defaultTemplate = 'magic-link';
+
+		const exists = async (name: string): Promise<boolean> => {
+			try {
+				await fs.promises.access(path.join(templatesRoot, name + '.liquid'));
+				return true;
+			} catch {
+				return false;
+			}
+		};
+
+		// No language or English variant → use default template
+		if (!language || language.toLowerCase().startsWith('en')) {
+			return (await exists(defaultTemplate)) ? defaultTemplate : null;
+		}
+
+		// Try locale-specific template (e.g. de-DE-magic-link), then fall back to default
+		const localeName = `${language}-magic-link`;
+		if (await exists(localeName)) return localeName;
+		if (await exists(defaultTemplate)) return defaultTemplate;
+		return null;
+	}
+
 	// Custom email sending function with improved error handling and logging
-	async function sendEmail(to, subject, text) {
+	async function sendEmail(to: string, subject: string, text: string, html?: string) {
 		logger.debug(`Attempting to send email to: ${to}`);
 		logger.debug(
 			`Using SMTP configuration - Host: ${env.EMAIL_SMTP_HOST}, Port: ${env.EMAIL_SMTP_PORT}, Secure: ${env.EMAIL_SMTP_SECURE}`
@@ -61,7 +129,8 @@ export default defineEndpoint((router, { services, database, env, logger }) => {
 				from: config.fromEmail,
 				to,
 				subject,
-				text
+				text,
+				...(html && { html })
 			});
 
 			logger.debug(`Email sent successfully. Message ID: ${info.messageId}`);
@@ -209,7 +278,7 @@ export default defineEndpoint((router, { services, database, env, logger }) => {
 
 			// Check if user exists - but don't tell the client if they don't
 			const user = await database
-				.select('id', 'email', 'role')
+				.select('id', 'email', 'role', 'language')
 				.from('directus_users')
 				.where({ email })
 				.first();
@@ -316,24 +385,33 @@ export default defineEndpoint((router, { services, database, env, logger }) => {
 			logger.debug(`Magic link generated for ${user.email}, expires at ${expiresAt.toISOString()}`);
 			logger.debug(`Verification URL: ${verificationUrl}`);
 
+			// Resolve subject from translations, fall back to config
+			const subject = (user.language && (subjectTranslations as Record<string, string>)[user.language]) || config.emailSubject;
+
+			const fallbackText = `Login Request\n\nClick the link below to log in. This link will expire in ${config.expirationMinutes} minutes.\n\n${verificationUrl}\n\nIf you didn't request this link, you can safely ignore this email.\n\nBest regards,\nYour Team`;
+
 			try {
 				logger.debug('Attempting to send magic link email');
 
-				// Send email using our custom function
-				await sendEmail(
-					user.email,
-					config.emailSubject,
-					`Login Request
-
-Click the link below to log in. This link will expire in ${config.expirationMinutes} minutes.
-
-${verificationUrl}
-
-If you didn't request this link, you can safely ignore this email.
-
-Best regards,
-Your Team`
-				);
+				// Resolve and render Liquid template if available
+				const templateName = await resolveTemplateName(user.language);
+				if (templateName) {
+					// Merge optional client-supplied templateData, skipping reserved keys
+					const customData = sanitizeTemplateData(req.body?.templateData);
+					const context: Record<string, unknown> = {
+						...Object.fromEntries(
+							Object.entries(customData).filter(([k]) => !RESERVED_CONTEXT_KEYS.includes(k))
+						),
+						verificationUrl,
+						expirationMinutes: config.expirationMinutes,
+						email: user.email,
+						siteName: config.siteName
+					};
+					const html = await liquidEngine.renderFile(templateName, context);
+					await sendEmail(user.email, subject, fallbackText, html as string);
+				} else {
+					await sendEmail(user.email, subject, fallbackText);
+				}
 
 				// Update the token record to indicate successful email delivery
 				await database('extension_magic_link').where({ token }).update({

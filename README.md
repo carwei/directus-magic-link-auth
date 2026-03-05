@@ -26,7 +26,6 @@ After full integration, you can selective disable the `magic-link-ui` endpoint a
 
 This is currently not implemented, but could be added in future versions if needed:
 
-- Make the full e-mail customizable (not just the subject)
 - Make the links true single use (there is currently a 1 minute window after the first use to use it again, to allow for accidental triggering by e-mail clients)
 - Sending email using any `EMAIL_TRANSPORT` mode (not only SMTP)
 - Installation via the Directus Marketplace
@@ -134,9 +133,16 @@ Send a POST request to `/magic-link-api/generate` with the following body:
 
 ```json
 {
-  "email": "user@example.com"
+  "email": "user@example.com",
+  "redirectUrl": "https://your-app.com/auth/callback",
+  "templateData": {
+    "campaign_id": "summer2025",
+    "source": "newsletter"
+  }
 }
 ```
+
+Both `redirectUrl` and `templateData` are optional. Any key-value pairs in `templateData` are available as Liquid variables in your email template (e.g. `{{ campaign_id }}`). Reserved names (`verificationUrl`, `expirationMinutes`, `email`, `siteName`) cannot be overridden.
 
 This will:
 
@@ -261,7 +267,8 @@ if (token) {
 | `MAGIC_LINK_DISALLOWED_ROLES`      | Comma-separated list of role IDs not allowed to use magic links | (empty = no restrictions) |
 | `PUBLIC_URL`                       | Your Directus instance URL                                      | `http://localhost:8055`   |
 | `DIRECTUS_INTERNAL_URL`            | Internal URL for server-to-server calls (bypasses proxy)        | `PUBLIC_URL`              |
-| `MAGIC_LINK_SITE_NAME`             | Site name displayed in the demo interface                       | `"Magic Link Demo"`       |
+| `MAGIC_LINK_SITE_NAME`             | Site name displayed in the demo interface and email templates   | `"Magic Link Demo"`       |
+| `EMAIL_TEMPLATES_PATH`             | Path to the folder containing Liquid email templates            | `./templates`             |
 
 ## Role-Based Access Control
 
@@ -292,10 +299,45 @@ LOG_LEVEL=debug
 
 This will output detailed information about magic link generation and verification, which can be helpful for troubleshooting.
 
+## Email Templates
+
+The extension supports HTML email bodies rendered with [LiquidJS](https://liquidjs.com/) templates.
+
+### Template location
+
+Templates are loaded from the directory set by `EMAIL_TEMPLATES_PATH` (default: `./templates`, resolved relative to the Directus working directory). Place the folder next to your extension or use an absolute path.
+
+### Template naming
+
+| Condition | Template file used |
+|---|---|
+| User language is `null` / not set | `magic-link.liquid` |
+| User language starts with `en` (e.g. `en-US`, `en-GB`) | `magic-link.liquid` |
+| Other locale (e.g. `de-DE`) and `de-DE-magic-link.liquid` exists | `de-DE-magic-link.liquid` |
+| Other locale but no locale-specific file found | `magic-link.liquid` (fallback) |
+| No `magic-link.liquid` found either | Plain-text email (no HTML) |
+
+### Template variables
+
+The following variables are available inside every template:
+
+| Variable | Description |
+|---|---|
+| `verificationUrl` | The full magic link URL the user should click |
+| `expirationMinutes` | How many minutes until the link expires |
+| `email` | The recipient's email address |
+| `siteName` | Value of `MAGIC_LINK_SITE_NAME` |
+| *(custom keys)* | Any key-value pairs sent in the optional `templateData` request body. Reserved names (`verificationUrl`, `expirationMinutes`, `email`, `siteName`) cannot be overridden. |
+
+### Email subjects
+
+Subjects are localised using `src/subject-translations.json`. The extension looks up the user's `language` field (e.g. `de-DE`) in that file. If no entry is found, `MAGIC_LINK_SUBJECT` is used as the fallback.
+
 ## Dependencies
 
 - [nodemailer](https://nodemailer.com/) - For handling email sending
 - [nanoid](https://github.com/ai/nanoid) - For secure token generation
+- [liquidjs](https://liquidjs.com/) - For HTML email template rendering
 
 ## License
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login to {{ siteName }}</title>
+  <style>
+    body { font-family: sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
+    .wrapper { max-width: 560px; margin: 40px auto; background: #ffffff; border-radius: 8px; padding: 40px; }
+    h2 { margin-top: 0; color: #1a1a1a; }
+    p { color: #444; line-height: 1.6; }
+    .btn { display: inline-block; margin: 24px 0; padding: 14px 28px; background: #6644ff; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; }
+    .url { word-break: break-all; color: #888; font-size: 13px; }
+    .footer { margin-top: 32px; font-size: 13px; color: #999; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h2>Login Request</h2>
+    <p>Click the button below to log in to <strong>{{ siteName }}</strong>. This link will expire in <strong>{{ expirationMinutes }} minutes</strong>.</p>
+    <a class="btn" href="{{ verificationUrl }}">Log in to {{ siteName }}</a>
+    <p>Or copy this URL into your browser:</p>
+    <p class="url">{{ verificationUrl }}</p>
+    {%- comment -%} Custom templateData variables are also available here, e.g. {{ campaign_id }}. See README. {%- endcomment -%}
+    <div class="footer">
+      <p>If you didn't request this link, you can safely ignore this email.</p>
+      <p>Best regards,<br />{{ siteName }}</p>
+    </div>
+  </div>
+</body>
+</html>
